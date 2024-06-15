@@ -1,9 +1,11 @@
 package com.milestone.cst339milestone;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * Controller class for handling basic navigation.
+ */
 @Controller
 public class HomeController {
 
@@ -33,5 +35,13 @@ public class HomeController {
     public String removeCar() {
         return "RemoveCar";
     }
-}
 
+    /**
+      * Displays the login page.
+      * @return The name of the Thymeleaf template for the login page.
+      */
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+}

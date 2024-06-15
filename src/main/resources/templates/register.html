@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <!-- Add Styling later -->
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <!-- Registration form -->
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" th:field="*{firstName}" class="form-control"/>
+                <!-- Display validation errors for first name -->
+                <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" th:field="*{lastName}" class="form-control"/>
+                <!-- Display validation errors for last name -->
+                <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" th:field="*{email}" class="form-control"/>
+                 <!-- Display validation errors for email -->
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control"/>
+                <!-- Display validation errors for phone number -->
+                <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" th:field="*{username}" class="form-control"/>
+                <!-- Display validation errors for username -->
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" th:field="*{password}" class="form-control"/>
+                <!-- Display validation errors for password -->
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <!-- End Registration form -->
+    </div>
+</body>
+</html>
