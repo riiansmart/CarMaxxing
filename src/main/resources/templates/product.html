@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Character encoding for the document -->
+    <meta charset="UTF-8">
+    <!-- Viewport settings for responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page -->
+    <title>Main Product Page</title>
+    <!-- Link to Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <!-- Brand/logo of the navbar -->
+            <a class="navbar-brand" href="#">Navbar</a>
+            <!-- Toggle button for mobile view -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Left side of the navbar -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <!-- Link to the home page -->
+                        <a class="nav-link" th:href="@{/}">Home</a>
+                    </li>
+                    <!-- Additional menu items can be added here -->
+                </ul>
+                <!-- Right side of the navbar -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <!-- Display the username dynamically -->
+                        <span class="nav-link">Welcome, <span th:text="${username}">User</span></span>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Logout button -->
+                        <a class="nav-link btn btn-primary" th:href="@{/logout}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content container -->
+    <div class="container mt-5">
+        <h1>Main Product Page</h1>
+        <!-- Product details go here -->
+    </div>
+
+    <!-- Link to Bootstrap JavaScript bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
