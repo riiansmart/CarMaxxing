@@ -31,6 +31,17 @@ public class User {
     private String password;
 
     // Getters and Setters
+    // Constructor
+    public User(String firstName, String lastName, String email, String phoneNumber, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        this.password = password;
+    }
+    // Default constructor
+    public User() {}
 
     public String getFirstName() {
         return firstName;

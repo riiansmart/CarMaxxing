@@ -21,11 +21,17 @@ public class UserService {
      * @return The saved user object.
      */
     public User saveUser(User user) {
+        if (user == null || user.getUsername() == null || user.getPassword() == null) {
+            throw new IllegalArgumentException("User or username/password cannot be null");
+        }
+        // Validate user data before saving
+        if (!isValidUser(user)) {
+            throw new IllegalArgumentException("Invalid user data");
+        }
         // Simulate database save by adding to list
         userList.add(user);
         return user;
     }
-
     /**
      * Finds a user by username.
      * @param username The username of the user to find.
@@ -39,5 +45,10 @@ public class UserService {
             }
         }
         return null;
+    }
+    
+    private boolean isValidUser(User user) {
+        // Perform validation logic here
+        return true;
     }
 }
