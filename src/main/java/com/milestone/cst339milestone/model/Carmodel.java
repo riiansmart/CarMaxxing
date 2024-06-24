@@ -1,6 +1,6 @@
 package com.milestone.cst339milestone.model;
 
-public class Carmodel {
+public class CarModel {
     private String make;
     private String model;
     private int year;
