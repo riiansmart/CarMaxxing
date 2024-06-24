@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${title}">User Login</title>
+    <title>defaultTemplate</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css" th:href="@{/styles.css}">
 </head>
 <body>
-    <!-- Navbar section -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div align="center">
+        <h1 th:text="${title}"></h1><br />
+    </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#"><img th:src="@{pictures/carmaxxing.jpg}" alt="Navbar logo" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
                     </li>
@@ -35,12 +42,45 @@
                         <a class="nav-link" th:href="@{/RemoveCar}">Remove a Car</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary" th:href="@{/register}">Register</a>
-                    </li>
-                </ul>
             </div>
+            <!-- Profile dropdown -->
+            <ul class="navbar-nav ">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Profile
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" th:if="${loggedIn}">
+                        <li><a class="dropdown-item" href="#">View Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" th:unless="${loggedIn}">
+                        <li><a class="dropdown-item" href="#">Login</a></li>
+                        <li><a class="dropdown-item" href="#">Register</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Register button section -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary" th:href="@{/register}">Register</a>
+                </li>
+            </ul>
+            <!-- Login button section -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary" th:href="@{/login}">Login</a>
+                </li>
+            </ul>
+            <!-- Search form section -->
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
     </nav>
 
@@ -53,7 +93,7 @@
                         <h1 th:text="${title}">User Login</h1>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/doLogin}" th:object="${loginModel}" method="post">
+                        <form th:action="@{/doLogin}" th:object="${loginModel}" method="post" >
                             <!-- Username input field -->
                             <div class="mb-3">
                                 <label for="username" class="form-label">User Name:</label>

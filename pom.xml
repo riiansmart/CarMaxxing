@@ -37,7 +37,11 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
+		<!--Thymeleaf layout -->
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+		</dependency>
 		<!-- Spring Boot Starter Validation -->
     	<dependency>
         	<groupId>org.springframework.boot</groupId>

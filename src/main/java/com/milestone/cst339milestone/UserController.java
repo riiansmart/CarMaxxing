@@ -31,6 +31,7 @@ public class UserController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
+        model.addAttribute("title", "Register Page");
         return "register";
     }
 
@@ -54,6 +55,6 @@ public class UserController {
         // userService.saveUser(user);
 
         // Redirect to login or another page after registration
-        return "redirect:/index";
+        return "redirect:/";
     }
 }

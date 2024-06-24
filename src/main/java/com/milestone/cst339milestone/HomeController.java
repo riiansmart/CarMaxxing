@@ -2,16 +2,18 @@ package com.milestone.cst339milestone;
 
 import jakarta.validation.Valid;
 
-import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.milestone.cst339milestone.model.CarModel;
 import com.milestone.cst339milestone.model.LoginModel;
-import com.milestone.cst339milestone.model.User;
-import com.milestone.cst339milestone.service.UserService;
 
 /**
  * Controller class for handling basic navigation.
@@ -19,33 +21,48 @@ import com.milestone.cst339milestone.service.UserService;
 @Controller
 public class HomeController {
 
-    @GetMapping("/index")
-    public String home() {
+    private List<CarModel> carList = new ArrayList<>();
+    //will map to the index
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("title", "Car Maxxing Home Page");
         return "index";
     }
-
+    //will map to the car listing page
     @GetMapping("/CarListing")
-    public String carListing() {
+    public String carListing(Model model) {
+        model.addAttribute("title", "CarMaxx Listings");
+        model.addAttribute("carList", carList);
         return "CarListing";
     }
-
+    //will map to the edit car page
     @GetMapping("/EditCar")
-    public String editCar() {
+    public String editCar(Model model) {
+        model.addAttribute("title", "Edit a Car");
         return "EditCar";
     }
-    
+    //will map to the car details page
     @GetMapping("/CarDetails")
-    public String carDetails() {
+    public String carDetails(Model model) {
+        model.addAttribute("title", "Car Details");
         return "CarDetails";
     }
     
     @GetMapping("/ListCar")
-    public String listCar() {
+    public String listCar(Model model) {
+        model.addAttribute("title", "List a Car");
         return "ListCar";
     }
-    
+    @PostMapping("/ListCar")
+    public String submitCar(@ModelAttribute CarModel carModel) {
+        System.out.println("Submitting car: " + carModel.getMake() + " " + carModel.getModel() + " " + carModel.getYear() + " " + carModel.getColor());
+        carList.add(carModel);
+        System.out.println("Car list size: " + carList.size());
+        return "redirect:/CarListing"; // Redirect to the car-listing page to show all added cars
+    }
     @GetMapping("/RemoveCar")
-    public String removeCar() {
+    public String removeCar(Model model) {
+        model.addAttribute("title", "Remove a Car");
         return "RemoveCar";
     }
 
@@ -59,32 +76,6 @@ public class HomeController {
         model.addAttribute("loginModel", new LoginModel());
         return "login";
     }
-    //if the user is logged in display true, if not display false
-    @GetMapping("/")
-    public String home(Model model, Principal principal) {
-        boolean loggedIn = principal != null;
-        model.addAttribute("loggedIn", loggedIn);
-        return "home";
-    }
-    //will be used along with "/" in order to make sure the profile is logged in
-    @GetMapping("/profile")
-    public String profile(Model model, Principal principal) {
-        boolean loggedIn = principal != null;
-        model.addAttribute("loggedIn", loggedIn);
-        UserService service = new UserService();
-        // Check if user is logged in and if the user is valid
-        if (loggedIn) {
-            String username = principal.getName();
-            User user = service.findByUsername(username);
-            if (user != null) {
-                // User is valid, add user details to model
-                model.addAttribute("user", user);
-                return "profile";
-            }
-        }
-        // User is not logged in or not valid, redirect to login page
-        return "redirect:/login";
-    }
     /**
       * Processes the login form submission.
       * @param loginModel The login model containing user input.
@@ -94,6 +85,7 @@ public class HomeController {
       */
     @PostMapping("/doLogin")
     public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) {
+        model.addAttribute("title", "Login Form");
         if (bindingResult.hasErrors()) {
             return "login";
         }
@@ -104,6 +96,6 @@ public class HomeController {
 
         // Redirect to the product page
         model.addAttribute("title", "Product Page");
-        return "product";
+        return "CarListing";
     }
 }

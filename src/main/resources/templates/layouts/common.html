@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Default Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css" th:href="@{/styles.css}">
+</head>
+
+<body>
+    <!--navbar selection-->
+    <div th:fragment="navbar">
+        <div align="center">
+            <h1 th:text="${title}"></h1><br />
+        </div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img th:src="@{pictures/carmaxxing.jpg}" alt="Navbar logo" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/CarListing}">Car Listing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/ListCar}">List a Car</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/EditCar}">Edit a Car</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/CarDetails}">Car Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/RemoveCar}">Remove a Car</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Profile dropdown -->
+                <ul class="navbar-nav ">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" th:if="${loggedIn}">
+                            <li><a class="dropdown-item" href="#">View Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" th:unless="${loggedIn}">
+                            <li><a class="dropdown-item" href="#">Login</a></li>
+                            <li><a class="dropdown-item" href="#">Register</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Register button section -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary" th:href="@{/register}">Register</a>
+                    </li>
+                </ul>
+                <!-- Login button section -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary" th:href="@{/login}">Login</a>
+                    </li>
+                </ul>
+                <!-- Search form section -->
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+
+    <!--
+        Main content 
+        <div th:fragment="content">
+            <p>This is the default content.</p>
+        </div>
+    
+         Footer 
+        <div th:fragment="footer">
+            Your footer content here
+        </div>
+    -->
+    <!-- Include Bootstrap JS -->
+
+</html>
