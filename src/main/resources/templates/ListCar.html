@@ -7,48 +7,119 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Car Listings Page</h1>
+    <h1>List a New Car</h1>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" th:href="@{/index}">Home</a>
-              </li>
-              <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" th:href="@{/CarListing}">Car Listing</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/CarListing}">List a Car</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/EditCar}">Edit a Car</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/CarDetails}">Car Details</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/RemoveCar}">Remove a Car</a></li>
-
-              </ul>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/index}">Home</a>
+                    </li>
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" th:href="@{/CarListing}">Car Listing</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/ListCar}">List a Car</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/EditCar}">Edit a Car</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/CarDetails}">Car Details</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/RemoveCar}">Remove a Car</a></li>
+                    </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
         </div>
-      </nav>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    </nav>
+
+    <!-- Car Listing Form -->
+    <div class="container mt-4">
+        <!-- Form for submitting car details -->
+        <form id="carForm">
+            <div class="mb-3">
+                <label for="make" class="form-label">Make</label>
+                <input type="text" id="make" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="model" class="form-label">Model</label>
+                <input type="text" id="model" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Year</label>
+                <input type="number" id="year" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="color" class="form-label">Color</label>
+                <input type="text" id="color" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <!-- End of Car Listing Form -->
+
+    <!-- Car Listings Section -->
+    <div class="container mt-4">
+        <h2>Current Car Listings</h2>
+        <!-- Div to hold car listings -->
+        <div id="carList">
+            <!-- Car listings will be dynamically added here -->
+        </div>
+    </div>
+    <!-- End of Car Listings Section -->
+
+    <!-- JavaScript to handle form submission and display car listings -->
+    <script>
+        // Add event listener to the form for submission
+        document.getElementById('carForm').addEventListener('submit', function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Get values from the form fields
+            const make = document.getElementById('make').value;
+            const model = document.getElementById('model').value;
+            const year = document.getElementById('year').value;
+            const color = document.getElementById('color').value;
+
+            // Get the div where car listings are displayed
+            const carList = document.getElementById('carList');
+            // Create a new card for the car listing
+            const carCard = document.createElement('div');
+            carCard.className = 'card mb-3';
+            carCard.innerHTML = `
+                <div class="card-body">
+                    <h5 class="card-title">${make} ${model}</h5>
+                    <p class="card-text">
+                        <strong>Year:</strong> ${year}<br>
+                        <strong>Color:</strong> ${color}
+                    </p>
+                </div>
+            `;
+            // Append the new car card to the car listings div
+            carList.appendChild(carCard);
+
+            // Clear the form fields after submission
+            document.getElementById('carForm').reset();
+        });
+    </script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

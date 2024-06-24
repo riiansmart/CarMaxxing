@@ -1,23 +1,20 @@
 package com.milestone.cst339milestone;
 
-import jakarta.validation.Valid;
-
-import java.security.Principal;
-
+import com.milestone.cst339milestone.model.Carmodel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import com.milestone.cst339milestone.model.LoginModel;
-import com.milestone.cst339milestone.model.User;
-import com.milestone.cst339milestone.service.UserService;
 
-/**
- * Controller class for handling basic navigation.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class HomeController {
+
+    // List to temporarily store car listings
+    private List<Carmodel> carList = new ArrayList<>();
 
     @GetMapping("/index")
     public String home() {
@@ -25,7 +22,8 @@ public class HomeController {
     }
 
     @GetMapping("/CarListing")
-    public String carListing() {
+    public String carListing(Model model) {
+        model.addAttribute("carList", carList);
         return "CarListing";
     }
 
@@ -40,70 +38,21 @@ public class HomeController {
     }
     
     @GetMapping("/ListCar")
-    public String listCar() {
+    public String listCar(Model model) {
+        model.addAttribute("carmodel", new Carmodel());
         return "ListCar";
+    }
+    
+    @PostMapping("/ListCar")
+    public String submitCar(@ModelAttribute Carmodel carmodel) {
+        System.out.println("Submitting car: " + carmodel.getMake() + " " + carmodel.getModel() + " " + carmodel.getYear() + " " + carmodel.getColor());
+        carList.add(carmodel);
+        System.out.println("Car list size: " + carList.size());
+        return "redirect:/CarListing"; // Redirect to the car-listing page to show all added cars
     }
     
     @GetMapping("/RemoveCar")
     public String removeCar() {
         return "RemoveCar";
-    }
-
-    /**
-      * Displays the login page.
-      * @return The name of the Thymeleaf template for the login page.
-      */
-    @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("title", "Login Form");
-        model.addAttribute("loginModel", new LoginModel());
-        return "login";
-    }
-    //if the user is logged in display true, if not display false
-    @GetMapping("/")
-    public String home(Model model, Principal principal) {
-        boolean loggedIn = principal != null;
-        model.addAttribute("loggedIn", loggedIn);
-        return "home";
-    }
-    //will be used along with "/" in order to make sure the profile is logged in
-    @GetMapping("/profile")
-    public String profile(Model model, Principal principal) {
-        boolean loggedIn = principal != null;
-        model.addAttribute("loggedIn", loggedIn);
-        UserService service = new UserService();
-        // Check if user is logged in and if the user is valid
-        if (loggedIn) {
-            String username = principal.getName();
-            User user = service.findByUsername(username);
-            if (user != null) {
-                // User is valid, add user details to model
-                model.addAttribute("user", user);
-                return "profile";
-            }
-        }
-        // User is not logged in or not valid, redirect to login page
-        return "redirect:/login";
-    }
-    /**
-      * Processes the login form submission.
-      * @param loginModel The login model containing user input.
-      * @param bindingResult The result of binding the form inputs.
-      * @param model The model to pass attributes to the view.
-      * @return The name of the Thymeleaf template to render.
-      */
-    @PostMapping("/doLogin")
-    public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "login";
-        }
-
-        // Print username and password to console
-        System.out.println("Username: " + loginModel.getUsername());
-        System.out.println("Password: " + loginModel.getPassword());
-
-        // Redirect to the product page
-        model.addAttribute("title", "Product Page");
-        return "product";
     }
 }
