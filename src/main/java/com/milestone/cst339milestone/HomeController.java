@@ -7,17 +7,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.milestone.cst339milestone.model.CarModel;
 import com.milestone.cst339milestone.model.LoginModel;
 
-/**
- * Controller class for handling basic navigation.
- */
 @Controller
 public class HomeController {
 
