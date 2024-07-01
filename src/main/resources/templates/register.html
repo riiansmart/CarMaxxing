@@ -11,7 +11,9 @@
 </head>
 
 <body>
-    <center><h1 th:text="${title}"></h1><br /></center>
+    <center>
+        <h1 th:text="${title}"></h1><br />
+    </center>
     <div class="container">
         <!-- Registration form -->
         <form th:action="@{/register}" th:object="${user}" method="post" name="registerForm" class="register-form">

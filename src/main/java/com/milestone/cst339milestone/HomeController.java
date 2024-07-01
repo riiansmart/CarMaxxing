@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.milestone.cst339milestone.model.CarModel;
+import com.milestone.cst339milestone.model.Car;
 import com.milestone.cst339milestone.model.LoginModel;
 
 @Controller
 public class HomeController {
 
-    private List<CarModel> carList = new ArrayList<>();
+    private List<Car> carList = new ArrayList<>();
     //will map to the index
     @GetMapping("/")
     public String home(Model model) {
@@ -51,7 +51,7 @@ public class HomeController {
         return "ListCar";
     }
     @PostMapping("/ListCar")
-    public String submitCar(@ModelAttribute CarModel carModel) {
+    public String submitCar(@ModelAttribute Car carModel) {
         System.out.println("Submitting car: " + carModel.getMake() + " " + carModel.getModel() + " " + carModel.getYear() + " " + carModel.getColor());
         carList.add(carModel);
         System.out.println("Car list size: " + carList.size());

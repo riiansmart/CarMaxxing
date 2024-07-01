@@ -1,18 +1,12 @@
 package com.milestone.cst339milestone.repository;
 
+import org.springframework.data.repository.CrudRepository;
 import com.milestone.cst339milestone.model.User;
 
 /**
  * Repository interface for managing User entities.
  */
-public interface UserRepository {
-
-    /**
-     * Saves a user entity.
-     * @param user The user object to be saved.
-     * @return The saved user object.
-     */
-    User save(User user);
+public interface UserRepository extends CrudRepository<User, Long> {
 
     /**
      * Finds a user by username.

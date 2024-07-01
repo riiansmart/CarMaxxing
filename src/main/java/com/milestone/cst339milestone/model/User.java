@@ -1,18 +1,25 @@
 package com.milestone.cst339milestone.model;
 
+import org.springframework.data.annotation.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-
 /**
  * Represents a User entity for registration.
  */
+@javax.persistence.Entity
+@javax.persistence.Table(name = "USERS")
 public class User {
-    
+
+    @Id
+    private Long id;
+
     @NotEmpty(message = "First name is required")
+    @Column("first_name")
     private String firstName;
 
     @NotEmpty(message = "Last name is required")
+    @Column("last_name")
     private String lastName;
 
     @Email(message = "Email should be valid")
@@ -20,6 +27,7 @@ public class User {
     private String email;
 
     @NotEmpty(message = "Phone number is required")
+    @javax.persistence.Column("phone_number")
     private String phoneNumber;
 
     @NotEmpty(message = "Username is required")
@@ -30,7 +38,6 @@ public class User {
     @Size(min = 6, message = "Password should have at least 6 characters")
     private String password;
 
-    // Getters and Setters
     // Constructor
     public User(String firstName, String lastName, String email, String phoneNumber, String username, String password) {
         this.firstName = firstName;
@@ -40,8 +47,17 @@ public class User {
         this.username = username;
         this.password = password;
     }
-    // Default constructor
-    public User() {}
+
+    public User(){}
+    // Getters and Setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;

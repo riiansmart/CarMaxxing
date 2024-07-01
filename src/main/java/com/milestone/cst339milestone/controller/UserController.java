@@ -1,4 +1,4 @@
-package com.milestone.cst339milestone;
+package com.milestone.cst339milestone.controller;
 
 import com.milestone.cst339milestone.model.User;
 import com.milestone.cst339milestone.service.UserService;

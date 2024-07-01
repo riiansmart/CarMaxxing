@@ -1,10 +1,26 @@
 package com.milestone.cst339milestone.model;
 
-public class CarModel {
+public class Car {
     private String make;
     private String model;
     private int year;
     private String color;
+    private Long id;
+
+
+    public Car() {}
+    public Car(String make, String model, int year, String color) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.color = color;
+    }
+    public Car(Long id, String make, String model, int year, String color) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.color = color;
+    }
 
     // Getters and Setters
     public String getMake() {
@@ -13,6 +29,13 @@ public class CarModel {
 
     public void setMake(String make) {
         this.make = make;
+    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getModel() {
