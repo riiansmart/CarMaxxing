@@ -1,11 +1,9 @@
 package com.milestone.cst339milestone.controller;
 
 import com.milestone.cst339milestone.model.User;
-import com.milestone.cst339milestone.service.UserService;
 
 import jakarta.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,9 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class UserController {
-
-    @Autowired
-    private UserService userService;
 
     /**
      * Displays the registration form.

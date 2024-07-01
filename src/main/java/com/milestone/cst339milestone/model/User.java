@@ -1,6 +1,9 @@
 package com.milestone.cst339milestone.model;
 
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -27,7 +30,7 @@ public class User {
     private String email;
 
     @NotEmpty(message = "Phone number is required")
-    @javax.persistence.Column("phone_number")
+    @Column("phone_number")
     private String phoneNumber;
 
     @NotEmpty(message = "Username is required")

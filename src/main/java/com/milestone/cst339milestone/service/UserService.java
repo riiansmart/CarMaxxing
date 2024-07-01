@@ -2,7 +2,6 @@ package com.milestone.cst339milestone.service;
 
 import com.milestone.cst339milestone.model.User;
 import com.milestone.cst339milestone.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -14,7 +13,6 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
