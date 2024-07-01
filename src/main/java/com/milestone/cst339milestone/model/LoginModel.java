@@ -1,8 +1,5 @@
 package com.milestone.cst339milestone.model;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
 /**
  * Model class for user login.
  * This class represents the login model with username and password fields.
