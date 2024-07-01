@@ -1,18 +1,14 @@
 package com.milestone.cst339milestone.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
-
-import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 /**
  * Represents a User entity for registration.
  */
-@Entity
-@Table(name = "USERS")
+@javax.persistence.Entity
+@javax.persistence.Table(name = "USERS")
 public class User {
 
     @Id
@@ -31,7 +27,7 @@ public class User {
     private String email;
 
     @NotEmpty(message = "Phone number is required")
-    @Column("phone_number")
+    @javax.persistence.Column("phone_number")
     private String phoneNumber;
 
     @NotEmpty(message = "Username is required")
