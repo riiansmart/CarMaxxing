@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <title th:text="${title}">Default Title</title>
 </head>
 <body>
-    <div th:replace="layouts/common :: navbar"></div>
+    <!-- Include the common header fragment -->
+    <div th:replace="~{layouts/common :: header}"></div>
+
 </body>
 </html>

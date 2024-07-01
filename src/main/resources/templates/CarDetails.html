@@ -6,6 +6,8 @@
     <title th:text="${title}"></title>
 </head>
 <body>
-  <div th:replace="layouts/common :: navbar"></div>
+  <div th:replace="~{layouts/common :: navbar}"></div>
+      <!-- Your main content here -->
+      <div th:include="~{layouts/defaultTemplate :: footer}"></div>
 </body>
 </html>
