@@ -1,28 +1,21 @@
 package com.milestone.cst339milestone.model;
 
-
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-/**
- * Represents a User entity for registration.
- */
-@javax.persistence.Entity
-@javax.persistence.Table(name = "USERS")
-public class User {
 
+@Document(collection = "users")
+public class User {
     @Id
-    private Long id;
+    private String id;
 
     @NotEmpty(message = "First name is required")
-    @Column("first_name")
     private String firstName;
 
     @NotEmpty(message = "Last name is required")
-    @Column("last_name")
     private String lastName;
 
     @Email(message = "Email should be valid")
@@ -30,7 +23,6 @@ public class User {
     private String email;
 
     @NotEmpty(message = "Phone number is required")
-    @Column("phone_number")
     private String phoneNumber;
 
     @NotEmpty(message = "Username is required")
@@ -41,7 +33,6 @@ public class User {
     @Size(min = 6, message = "Password should have at least 6 characters")
     private String password;
 
-    // Constructor
     public User(String firstName, String lastName, String email, String phoneNumber, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,14 +42,13 @@ public class User {
         this.password = password;
     }
 
-    public User(){}
     // Getters and Setters
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -109,4 +99,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public User(){}
 }

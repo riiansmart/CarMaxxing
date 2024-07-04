@@ -1,12 +1,12 @@
 package com.milestone.cst339milestone.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import com.milestone.cst339milestone.model.User;
 
 /**
  * Repository interface for managing User entities.
  */
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends MongoRepository<User, String> {
 
     /**
      * Finds a user by username.
