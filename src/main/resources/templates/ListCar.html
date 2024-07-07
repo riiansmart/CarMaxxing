@@ -14,22 +14,22 @@
     <div layout:fragment="content">
         <div class="container mt-4">
             <!-- Form for submitting car details -->
-            <form id="carForm">
+            <form id="carForm" th:action="@{/cars}" method="post">
                 <div class="mb-3">
                     <label for="make" class="form-label">Make</label>
-                    <input type="text" id="make" class="form-control" required>
+                    <input type="text" id="make" name="make" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label for="model" class="form-label">Model</label>
-                    <input type="text" id="model" class="form-control" required>
+                    <input type="text" id="model" name="model" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label for="year" class="form-label">Year</label>
-                    <input type="number" id="year" class="form-control" required>
+                    <input type="number" id="year" name="year" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label for="color" class="form-label">Color</label>
-                    <input type="text" id="color" class="form-control" required>
+                    <input type="text" id="color" name="color" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -41,44 +41,19 @@
             <h2>Current Car Listings</h2>
             <!-- Div to hold car listings -->
             <div id="carList">
-                <!-- Car listings will be dynamically added here -->
+                <!-- Iterate over cars fetched from backend -->
+                <div th:each="car : ${carList}" class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${car.make} + ' ' + ${car.model}"></h5>
+                        <p class="card-text">
+                            <strong>Year:</strong> <span th:text="${car.year}"></span><br>
+                            <strong>Color:</strong> <span th:text="${car.color}"></span>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- JavaScript to handle form submission and display car listings -->
-    <script>
-        // Add event listener to the form for submission
-        document.getElementById('carForm').addEventListener('submit', function (event) {
-            // Prevent the default form submission
-            event.preventDefault();
-
-            // Get values from the form fields
-            const make = document.getElementById('make').value;
-            const model = document.getElementById('model').value;
-            const year = document.getElementById('year').value;
-            const color = document.getElementById('color').value;
-
-            // Get the div where car listings are displayed
-            const carList = document.getElementById('carList');
-            // Create a new card for the car listing
-            const carCard = document.createElement('div');
-            carCard.className = 'card mb-3';
-            carCard.innerHTML = `
-              <div class="card-body">
-                  <h5 class="card-title">${make} ${model}</h5>
-                  <p class="card-text">
-                      <strong>Year:</strong> ${year}<br>
-                      <strong>Color:</strong> ${color}
-                  </p>
-              </div>
-          `;
-            // Append the new car card to the car listings div
-            carList.appendChild(carCard);
-
-            // Clear the form fields after submission
-            document.getElementById('carForm').reset();
-        });
-    </script>
 </body>
 
 </html>

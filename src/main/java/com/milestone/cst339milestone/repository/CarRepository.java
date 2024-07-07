@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface CarRepository extends MongoRepository<Car, String> {
-    Optional<Car> findById(Long id);
+    Optional<Car> findById(String id);
 
-    void deleteById(Long id);
+    void deleteById(String id);
 }

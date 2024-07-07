@@ -18,7 +18,7 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    public Optional<Car> getCarById(Long id) {
+    public Optional<Car> getCarById(String id) {
         return carRepository.findById(id);
     }
 
@@ -26,7 +26,7 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    public void deleteCar(Long id) {
+    public void deleteCar(String id) {
         carRepository.deleteById(id);
     }
 }
