@@ -1,24 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>defaultTemplate</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ga+Maamli&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ga+Maamli&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css" th:href="@{/styles.css}">
 </head>
 <body>
     <div th:replace="~{layouts/common :: navbar}"></div>
 
-    <!-- Your main content here
-    <div th:include="~{layouts/defaultTemplate :: content}">
-        My Body Content
+    <!-- Your main content here-->
+    <div layout:fragment="content">
+        <!-- My Body Content -->
     </div>
-
+    
+    <!--
     Include the footer from the common template
-    <div th:replace="~{layouts/common :: footer}"></div> -->
-        <!-- Include Bootstrap JS -->
+    <div th:replace="~{layouts/common :: footer}"></div> 
+    Include Bootstrap JS-->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -29,6 +29,7 @@ public class HomeController {
     @GetMapping("/CarListing")
     public String carListing(Model model) {
         model.addAttribute("title", "CarMaxx Listings");
+        //carList = carService.getAllCars(); // Replace with your service method to fetch cars
         model.addAttribute("carList", carList);
         return "CarListing";
     }
@@ -37,12 +38,6 @@ public class HomeController {
     public String editCar(Model model) {
         model.addAttribute("title", "Edit a Car");
         return "EditCar";
-    }
-    //will map to the car details page
-    @GetMapping("/CarDetails")
-    public String carDetails(Model model) {
-        model.addAttribute("title", "Car Details");
-        return "CarDetails";
     }
     
     @GetMapping("/ListCar")
@@ -92,7 +87,7 @@ public class HomeController {
         System.out.println("Password: " + loginModel.getPassword());
 
         // Redirect to the product page
-        model.addAttribute("title", "Product Page");
+        model.addAttribute("title", "CarMaxx Listings");
         return "CarListing";
     }
 }

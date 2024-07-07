@@ -1,21 +1,34 @@
 package com.milestone.cst339milestone.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "cars")
 public class Car {
+
+    @Id
+    private String id; // Use String for MongoDB's ObjectId
+
     private String make;
     private String model;
     private int year;
     private String color;
-    private Long id;
 
+    // Constructors, getters, setters, and other methods
+    // Omitted for brevity
 
-    public Car() {}
+    public Car() {
+    }
+
     public Car(String make, String model, int year, String color) {
         this.make = make;
         this.model = model;
         this.year = year;
         this.color = color;
     }
-    public Car(Long id, String make, String model, int year, String color) {
+
+    public Car(String id, String make, String model, int year, String color) {
+        this.id = id;
         this.make = make;
         this.model = model;
         this.year = year;
@@ -23,19 +36,21 @@ public class Car {
     }
 
     // Getters and Setters
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getMake() {
         return make;
     }
 
     public void setMake(String make) {
         this.make = make;
-    }
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getModel() {
@@ -60,5 +75,16 @@ public class Car {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id='" + id + '\'' +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", year=" + year +
+                ", color='" + color + '\'' +
+                '}';
     }
 }

@@ -2,7 +2,6 @@ package com.milestone.cst339milestone.service;
 
 import com.milestone.cst339milestone.model.Car;
 import com.milestone.cst339milestone.repository.CarRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

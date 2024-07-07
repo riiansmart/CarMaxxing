@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/defaultTemplate}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/styles.css}" />
     <title th:text="${title}">Default Title</title>
 </head>
-<body>
-    <!-- Include the common header fragment -->
-    <div th:replace="~{layouts/common :: header}"></div>
 
+<body>
+    <!-- Define the unique content for this page -->
+    <div layout:fragment="content">
+
+    </div>
 </body>
+
 </html>
