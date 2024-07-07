@@ -3,11 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title th:text="${title}"></title>
+  <title th:text="${title}">Edit Car</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css"> <!-- Link to your existing styles -->
 </head>
 <body>
-  <div th:replace="~{layouts/common :: navbar}"></div>
-      <!-- Your main content here -->
-      <div th:include="~{layouts/defaultTemplate :: footer}"></div>
+  <div th:replace="~{layouts/common :: navbar}"></div> <!-- Include the common navbar -->
+  
+  <h1 th:text="${title}"></h1> <!-- Page title -->
+
+  <!-- Form for editing car details -->
+  <form th:action="@{/cars/edit/{id}(id=${car.id})}" th:object="${car}" method="post">
+      <!-- Input for car make -->
+      <label for="make">Make:</label>
+      <input type="text" id="make" th:field="*{make}" required><br>
+      
+      <!-- Input for car model -->
+      <label for="model">Model:</label>
+      <input type="text" id="model" th:field="*{model}" required><br>
+      
+      <!-- Input for car year -->
+      <label for="year">Year:</label>
+      <input type="number" id="year" th:field="*{year}" required><br>
+      
+      <!-- Input for car color -->
+      <label for="color">Color:</label>
+      <input type="text" id="color" th:field="*{color}" required><br>
+      
+      <!-- Submit button to save changes -->
+      <button type="submit">Save</button>
+  </form>
+  
+  <!-- Link to go back to the car listing page -->
+  <a href="/cars">Back to list</a>
+  
+  <div th:include="~{layouts/defaultTemplate :: footer}"></div> <!-- Include the common footer -->
 </body>
 </html>

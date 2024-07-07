@@ -1,4 +1,4 @@
-h1 {
+.h1 {
     font-family: "Ga Maamli", sans-serif;
     color: #470A68;
     /* You can also specify other properties like font-size, font-weight, etc. */
@@ -7,15 +7,24 @@ h1 {
     padding: 10px; /* Padding inside the box */
     display: inline-block; /* Ensures the border fits tightly around the text */
 }
+
 h2 {
     font-family: "Montserrat", sans-serif;
     color: black;
 }
+
 .navbar {
     height: 60px; /* Set the desired height for the navbar */
     position: relative; /* Ensure the navbar is positioned relative to its container */
-    background-color: #778692  !important;
+    background-color: white !important; /* Change the background color to white */
+    border-bottom: 1px solid #ccc; /* Optional: Add a bottom border for separation */
 }
+
+/* Adjust text color for better visibility against white background */
+.navbar a, .navbar .navbar-brand, .navbar .navbar-nav .nav-link {
+    color: black; /* Set the text color to black */
+}
+
 /* Remove the borders */
 .navbar::before,
 .navbar::after {
@@ -29,21 +38,21 @@ h2 {
 .navbar-brand img {
     border: none; /* Remove the border */
 }
+
 body {
     background-color: #522398; /* Use your desired color code */
 }
 
 .navbar img {
     position: absolute; /* Position the image absolutely within the navbar */
-        top: -20px; /* Move the image 20px above the top edge of the navbar */
-        left: 5%; /* Center the image horizontally */
-        transform: translateX(-50%); /* Adjust the image position after centering */
-        max-height: calc(100% + 40px); /* Extend the image height by 40px (20px above and below the navbar) */
-        width: auto; /* Allows the image to scale proportionally */
-        border-radius: 5px; /* Apply a border radius of 5px to make the image rounded */
-        border: 2px solid black; /* Apply a black border */
+    top: -20px; /* Move the image 20px above the top edge of the navbar */
+    left: 5%; /* Center the image horizontally */
+    transform: translateX(-50%); /* Adjust the image position after centering */
+    max-height: calc(100% + 40px); /* Extend the image height by 40px (20px above and below the navbar) */
+    width: auto; /* Allows the image to scale proportionally */
+    border-radius: 5px; /* Apply a border radius of 5px to make the image rounded */
+    border: 2px solid black; /* Apply a black border */
 }
-
 
 /* Style for the register form */
 .register-form {
@@ -76,22 +85,25 @@ body {
     border-radius: 3px; /* Add border radius */
     cursor: pointer; /* Change cursor to pointer on hover */
 }
+
 .custom-submit-button {
     background-color: #B9C8D3;
     color: black;
     border-color: black;
 }
+
 .custom-submit-button:hover {
     background-color: #470A68;
     border-color: black;
     color: white; /* Ensuring text color remains white on hover */
 }
+
 /* Style for submit button on hover inside the register form */
 .register-form input[type="submit"]:hover {
     background-color: #B9C8D3; /* Darker blue on hover */
 }
-/* Card container */
 
+/* Card container */
 .card {
     background-color: #8E8279; /* Card background color */
     border: 1px solid black; /* Card border */
@@ -104,3 +116,10 @@ body {
     transition: box-shadow 0.3s ease; /* Smooth transition for shadow on hover */
 }
 
+/* Add this CSS rule to change the Search Bar color to white */
+input.search-bar {
+    background-color: white;
+    color: black; /* Assuming you want the text color to be black for contrast */
+    border: 1px solid black; /* Optional: Add a border to make the input more visible */
+    padding: 5px; /* Adjust padding as needed */
+}

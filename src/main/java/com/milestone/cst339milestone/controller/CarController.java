@@ -1,6 +1,5 @@
 package com.milestone.cst339milestone.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,16 +32,47 @@ public class CarController {
         model.addAttribute("carList", carList);
         return "CarListing";
     }
+
     @PostMapping("")
     public String addCar(@ModelAttribute("car") Car car) {
         carService.addCar(car);
-        return "redirect:/CarListing";
+        return "redirect:/cars/CarListing";
     }
 
     @DeleteMapping("/{id}")
     public String deleteCar(@PathVariable("id") String id) {
         carService.deleteCar(id);
-        return "redirect:/CarListing";
+        return "redirect:/cars/CarListing";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editCarForm(@PathVariable("id") String id, Model model) {
+        Car car = carService.getCarById(id).orElse(null);
+        if (car == null) {
+            return "redirect:/cars/CarListing"; // Handle the case where the car is not found
+        }
+        model.addAttribute("car", car);
+        model.addAttribute("title", "Edit Car");
+        return "EditCar";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editCar(@PathVariable("id") String id, @ModelAttribute("car") Car car) {
+        car.setId(id);
+        carService.updateCar(car);
+        return "redirect:/cars/CarListing";
+    }
+
+    @GetMapping("/EditCar")
+    public String editCarFormFixed(Model model) {
+        // Assuming there is a car with ID "some-fixed-id" for demonstration purposes
+        String fixedId = "some-fixed-id"; // Replace this with an actual ID for testing
+        Car car = carService.getCarById(fixedId).orElse(null);
+        if (car == null) {
+            return "redirect:/cars/CarListing"; // Handle the case where the car is not found
+        }
+        model.addAttribute("car", car);
+        model.addAttribute("title", "Edit Car");
+        return "EditCar";
     }
 }
-
