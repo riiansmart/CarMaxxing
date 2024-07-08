@@ -31,7 +31,7 @@ public class HomeController {
         model.addAttribute("title", "CarMaxx Listings");
         //carList = carService.getAllCars(); // Replace with your service method to fetch cars
         model.addAttribute("carList", carList);
-        return "cars/CarListing";
+        return "CarListing";
     }
     //will map to the edit car page
     @GetMapping("/EditCar")

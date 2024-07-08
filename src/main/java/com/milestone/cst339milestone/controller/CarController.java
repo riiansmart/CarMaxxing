@@ -34,9 +34,10 @@ public class CarController {
         return "CarListing";
     }
 
-    @PostMapping("")
+    @PostMapping("/ListCar")
     public String addCar(@ModelAttribute("car") Car car) {
-        carService.addCar(car);
+        // Handle adding car logic
+        carService.addCar(car); 
         return "redirect:/cars/CarListing";
     }
 
@@ -45,6 +46,7 @@ public class CarController {
         carService.deleteCar(id);
         return "redirect:/cars/CarListing";
     }
+
 
     @GetMapping("/edit/{id}")
     public String editCarForm(@PathVariable("id") String id, Model model) {
