@@ -3,11 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title th:text="${title}"></title>
+  <title th:text="${title}">Remove Car</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css"> <!-- Link to your existing styles -->
 </head>
 <body>
-  <div th:replace="~{layouts/common :: navbar}"></div>
-      <!-- Your main content here -->
-      <div th:include="~{layouts/defaultTemplate :: footer}"></div>
+  <div th:replace="~{layouts/common :: navbar}"></div> <!-- Include the common navbar -->
+
+  <div class="container mt-4">
+    <h1 th:text="${title}">Remove a Car</h1> <!-- Page title -->
+    <!-- Check if there are cars in the list -->
+    <div th:if="${carList.size() > 0}">
+      <h2>Current Car Listings</h2>
+      <!-- Loop through each car in the carList -->
+      <div th:each="car : ${carList}">
+        <div class="card mb-3">
+          <div class="card-body">
+            <!-- Display car make and model -->
+            <h5 class="card-title" th:text="${car.make} + ' ' + ${car.model}"></h5>
+            <p class="card-text">
+              <!-- Display car year -->
+              <strong>Year:</strong> <span th:text="${car.year}"></span><br>
+              <!-- Display car color -->
+              <strong>Color:</strong> <span th:text="${car.color}"></span>
+            </p>
+            <!-- Remove button -->
+            <form th:action="@{/cars/remove/{id}(id=${car.id})}" method="post" onsubmit="return confirm('Are you sure you want to delete this car?');">
+              <button type="submit" class="btn btn-danger">Remove</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Message if there are no cars in the list -->
+    <div th:if="${carList.size() == 0}">
+      <h2>No cars available to remove.</h2>
+    </div>
+  </div>
+
+  <div th:include="~{layouts/defaultTemplate :: footer}"></div> <!-- Include the common footer -->
 </body>
 </html>

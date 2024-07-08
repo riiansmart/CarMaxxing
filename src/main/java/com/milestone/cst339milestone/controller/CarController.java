@@ -75,4 +75,24 @@ public class CarController {
         model.addAttribute("title", "Edit Car");
         return "EditCar";
     }
+
+    // Handles the GET request for RemoveCar page
+    @GetMapping("/remove")
+    public String showRemoveCarForm(Model model) {
+        List<Car> carList = carService.getAllCars();
+        if (carList == null) {
+            carList = new ArrayList<>();
+        }
+        model.addAttribute("carList", carList);
+        model.addAttribute("car", new Car()); // This will bind the selected car for removal
+        return "RemoveCar";
+    }
+
+    // Handles removing Car object from page
+    @PostMapping("/remove")
+    public String removeCar(@ModelAttribute("car") Car car) {
+        carService.deleteCar(car.getId());
+        return "redirect:/cars/CarListing";
+    }
+
 }
