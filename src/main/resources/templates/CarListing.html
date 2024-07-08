@@ -6,41 +6,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/styles.css}" />
-    <title th:text="${title}">Default Title</title>
+    <title th:text="${title}">Car Listing</title>
 </head>
 
 <body>
-    <div th:replace="~{layouts/common :: navbar}"></div>
-
-    <!-- Car Listings - Added Section -->
-    <!-- Placeholder for the unique content of each page -->
     <div layout:fragment="content">
         <div class="container mt-4">
-            <!-- Check if there are cars in the list -->
-            <div th:if="${carList.size() > 0}">
-                <h2>Current Car Listings</h2>
-                <!-- Loop through each car in the carList -->
-                <div th:each="car : ${carList}">
-                    <div class="card mb-3">
+            <center><h2>Current Car Listings</h2></center>
+            <div id="carListContainer">
+                <div id="carList" class="car-listing-cards">
+                    <div th:if="${carList.empty}">
+                        <p>No cars found.</p>
+                    </div>
+                    <div th:each="car : ${carList}" class="card car-listing-card">
                         <div class="card-body">
-                            <!-- Display car make and model -->
                             <h5 class="card-title" th:text="${car.make} + ' ' + ${car.model}"></h5>
                             <p class="card-text">
-                                <!-- Display car year -->
                                 <strong>Year:</strong> <span th:text="${car.year}"></span><br>
-                                <!-- Display car color -->
                                 <strong>Color:</strong> <span th:text="${car.color}"></span>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Message if there are no cars in the list -->
-            <div th:if="${carList.size() == 0}">
-                <h2>No cars listed yet.</h2>
-            </div>
         </div>
     </div>
+    <script th:src="@{/script.js}"></script>
 </body>
-
 </html>

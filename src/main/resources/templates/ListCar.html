@@ -10,50 +10,29 @@
 </head>
 
 <body>
-    <!-- Car Listing Form -->
     <div layout:fragment="content">
         <div class="container mt-4">
             <!-- Form for submitting car details -->
-            <form id="carForm" th:action="@{/cars}" method="post">
-                <div class="mb-3">
+            <form id="listCarForm" th:action="@{/cars/ListCar}" method="post" class="list-car-form">
+                <div class="ListCarContainers">
                     <label for="make" class="form-label">Make</label>
                     <input type="text" id="make" name="make" class="form-control" required>
                 </div>
-                <div class="mb-3">
+                <div class="ListCarContainers">
                     <label for="model" class="form-label">Model</label>
                     <input type="text" id="model" name="model" class="form-control" required>
                 </div>
-                <div class="mb-3">
+                <div class="ListCarContainers">
                     <label for="year" class="form-label">Year</label>
                     <input type="number" id="year" name="year" class="form-control" required>
                 </div>
-                <div class="mb-3">
+                <div class="ListCarContainers">
                     <label for="color" class="form-label">Color</label>
                     <input type="text" id="color" name="color" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
-        <!-- End of Car Listing Form -->
-
-        <!-- Car Listings Section -->
-        <div class="container mt-4">
-            <h2>Current Car Listings</h2>
-            <!-- Div to hold car listings -->
-            <div id="carList">
-                <!-- Iterate over cars fetched from backend -->
-                <div th:each="car : ${carList}" class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${car.make} + ' ' + ${car.model}"></h5>
-                        <p class="card-text">
-                            <strong>Year:</strong> <span th:text="${car.year}"></span><br>
-                            <strong>Color:</strong> <span th:text="${car.color}"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </body>
-
 </html>

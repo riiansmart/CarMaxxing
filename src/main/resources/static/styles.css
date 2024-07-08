@@ -1,4 +1,4 @@
-.h1 {
+h1 {
     font-family: "Ga Maamli", sans-serif;
     color: #470A68;
     /* You can also specify other properties like font-size, font-weight, etc. */
@@ -7,24 +7,22 @@
     padding: 10px; /* Padding inside the box */
     display: inline-block; /* Ensures the border fits tightly around the text */
 }
-
 h2 {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: black;
+    /* You can also specify other properties like font-size, font-weight, etc. */
+    background-color: #778692;
+    padding: 10px; /* Padding inside the box */
+    display: inline-block; /* Ensures the border fits tightly around the text */
 }
-
 .navbar {
     height: 60px; /* Set the desired height for the navbar */
     position: relative; /* Ensure the navbar is positioned relative to its container */
-    background-color: white !important; /* Change the background color to white */
-    border-bottom: 1px solid #ccc; /* Optional: Add a bottom border for separation */
+    background-color: #778692  !important;
 }
-
-/* Adjust text color for better visibility against white background */
-.navbar a, .navbar .navbar-brand, .navbar .navbar-nav .nav-link {
-    color: black; /* Set the text color to black */
-}
-
 /* Remove the borders */
 .navbar::before,
 .navbar::after {
@@ -38,21 +36,21 @@ h2 {
 .navbar-brand img {
     border: none; /* Remove the border */
 }
-
 body {
     background-color: #522398; /* Use your desired color code */
 }
 
 .navbar img {
     position: absolute; /* Position the image absolutely within the navbar */
-    top: -20px; /* Move the image 20px above the top edge of the navbar */
-    left: 5%; /* Center the image horizontally */
-    transform: translateX(-50%); /* Adjust the image position after centering */
-    max-height: calc(100% + 40px); /* Extend the image height by 40px (20px above and below the navbar) */
-    width: auto; /* Allows the image to scale proportionally */
-    border-radius: 5px; /* Apply a border radius of 5px to make the image rounded */
-    border: 2px solid black; /* Apply a black border */
+        top: -20px; /* Move the image 20px above the top edge of the navbar */
+        left: 5%; /* Center the image horizontally */
+        transform: translateX(-50%); /* Adjust the image position after centering */
+        max-height: calc(100% + 40px); /* Extend the image height by 40px (20px above and below the navbar) */
+        width: auto; /* Allows the image to scale proportionally */
+        border-radius: 5px; /* Apply a border radius of 5px to make the image rounded */
+        border: 2px solid black; /* Apply a black border */
 }
+
 
 /* Style for the register form */
 .register-form {
@@ -85,41 +83,103 @@ body {
     border-radius: 3px; /* Add border radius */
     cursor: pointer; /* Change cursor to pointer on hover */
 }
-
 .custom-submit-button {
     background-color: #B9C8D3;
     color: black;
     border-color: black;
 }
-
 .custom-submit-button:hover {
     background-color: #470A68;
     border-color: black;
     color: white; /* Ensuring text color remains white on hover */
 }
-
 /* Style for submit button on hover inside the register form */
 .register-form input[type="submit"]:hover {
     background-color: #B9C8D3; /* Darker blue on hover */
 }
-
 /* Card container */
 .card {
-    background-color: #8E8279; /* Card background color */
+    flex: 0 0 auto;
+    background-color: #C0C0C0; /* Example background color */
+    margin: 10px 0;
+    width: 200px;
+    height: 100px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
+    text-align: center;
     border: 1px solid black; /* Card border */
     border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    overflow: hidden; /* Ensure content fits within rounded corners */
-    margin: 20px; /* Spacing around the card */
-    max-width: 400px; /* Max width of the card */
-    padding: 20px;
-    transition: box-shadow 0.3s ease; /* Smooth transition for shadow on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    scroll-snap-align: center;
 }
 
-/* Add this CSS rule to change the Search Bar color to white */
-input.search-bar {
+.card.active {
+    transform: scale(1.2);
+}
+
+/* Highlight card on hover */
+.card:hover {
     background-color: white;
-    color: black; /* Assuming you want the text color to be black for contrast */
-    border: 1px solid black; /* Optional: Add a border to make the input more visible */
-    padding: 5px; /* Adjust padding as needed */
+}
+#carListContainer {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Adjust the height as needed */
+    overflow: hidden;
+    border: 2px solid black;
+    background-color: #8E8279;
+}
+
+#carList {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    height: 100%;
+    padding: 20px 0;
+    align-items: center;
+    scroll-snap-type: y mandatory;
+}
+
+.ListCarContainers {
+    margin-bottom: 20px; /* Example margin bottom */
+    padding: 15px; /* Example padding */
+    background-color: #C0C0C0; /* Example background color */
+    border: 1px solid #333; /* Example border */
+    border-radius: 5px; /* Example border radius */
+}
+
+.list-car-form {
+    background-color: #8E8279; /* Specific background color for listCarForm */
+    padding: 20px; /* Example padding */
+    border: 1px solid #333; /* Example border */
+    border-radius: 5px; /* Example border radius */
+}
+
+.list-car-form label {
+    font-weight: bold; /* Example font weight */
+    color: #333; /* Example text color */
+}
+
+.list-car-form input[type="text"],
+.list-car-form input[type="number"] {
+    width: 100%; /* Make inputs fill the width */
+    padding: 8px; /* Example padding */
+    margin-top: 5px; /* Example margin top */
+    border: 1px solid #666; /* Example border */
+    border-radius: 3px; /* Example border radius */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+.list-car-form .btn {
+    background-color: #470A68; /* Example button background color */
+    color: white; /* Example button text color */
+    border: none; /* Remove button border */
+    padding: 10px 20px; /* Example button padding */
+    border-radius: 3px; /* Example button border radius */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.list-car-form .btn:hover {
+    background-color: #778692; /* Darker color on hover */
+    color: white; /* Text color on hover */
 }

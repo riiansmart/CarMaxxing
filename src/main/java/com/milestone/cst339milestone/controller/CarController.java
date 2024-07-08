@@ -30,6 +30,7 @@ public class CarController {
             carList = new ArrayList<>();
         }
         model.addAttribute("carList", carList);
+        model.addAttribute("title", "Car Listing");
         return "CarListing";
     }
 
