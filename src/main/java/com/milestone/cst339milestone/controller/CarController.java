@@ -2,7 +2,6 @@ package com.milestone.cst339milestone.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +11,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.milestone.cst339milestone.model.Car;
 import com.milestone.cst339milestone.service.CarService;
 
+/**
+ * CarController handles web requests related to car management operations such as listing, adding, editing, and deleting cars.
+ */
 @Controller
 @RequestMapping("/cars")
 public class CarController {
@@ -23,6 +24,12 @@ public class CarController {
     @Autowired
     private CarService carService;
 
+    /**
+     * Displays the car listing page with all cars.
+     *
+     * @param model The model to pass attributes to the view.
+     * @return The name of the Thymeleaf template for the car listing page.
+     */
     @GetMapping("/CarListing")
     public String showCarListing(Model model) {
         List<Car> carList = carService.getAllCars();
@@ -34,20 +41,37 @@ public class CarController {
         return "CarListing";
     }
 
+    /**
+     * Adds a new car to the listing.
+     *
+     * @param car The car object to be added.
+     * @return A redirect to the car listing page.
+     */
     @PostMapping("/ListCar")
     public String addCar(@ModelAttribute("car") Car car) {
-        // Handle adding car logic
         carService.addCar(car); 
         return "redirect:/cars/CarListing";
     }
 
+    /**
+     * Deletes a car from the listing by ID.
+     *
+     * @param id The ID of the car to delete.
+     * @return A redirect to the car listing page.
+     */
     @DeleteMapping("/{id}")
     public String deleteCar(@PathVariable("id") String id) {
         carService.deleteCar(id);
         return "redirect:/cars/CarListing";
     }
 
-
+    /**
+     * Displays the form for editing a car.
+     *
+     * @param id The ID of the car to edit.
+     * @param model The model to pass attributes to the view.
+     * @return The name of the Thymeleaf template for the edit car page.
+     */
     @GetMapping("/edit/{id}")
     public String editCarForm(@PathVariable("id") String id, Model model) {
         Car car = carService.getCarById(id).orElse(null);
@@ -59,6 +83,13 @@ public class CarController {
         return "EditCar";
     }
 
+    /**
+     * Updates the details of a car.
+     *
+     * @param id The ID of the car to update.
+     * @param car The car object containing updated details.
+     * @return A redirect to the car listing page.
+     */
     @PostMapping("/edit/{id}")
     public String editCar(@PathVariable("id") String id, @ModelAttribute("car") Car car) {
         car.setId(id);
@@ -66,9 +97,14 @@ public class CarController {
         return "redirect:/cars/CarListing";
     }
 
+    /**
+     * Displays a fixed car edit form, primarily for testing.
+     *
+     * @param model The model to pass attributes to the view.
+     * @return The name of the Thymeleaf template for the edit car page.
+     */
     @GetMapping("/EditCar")
     public String editCarFormFixed(Model model) {
-        // Assuming there is a car with ID "some-fixed-id" for demonstration purposes
         String fixedId = "some-fixed-id"; // Replace this with an actual ID for testing
         Car car = carService.getCarById(fixedId).orElse(null);
         if (car == null) {
@@ -79,7 +115,12 @@ public class CarController {
         return "EditCar";
     }
 
-    // Handles the GET request for RemoveCar page
+    /**
+     * Displays the form for removing a car.
+     *
+     * @param model The model to pass attributes to the view.
+     * @return The name of the Thymeleaf template for the remove car page.
+     */
     @GetMapping("/remove")
     public String showRemoveCarForm(Model model) {
         List<Car> carList = carService.getAllCars();
@@ -91,11 +132,15 @@ public class CarController {
         return "RemoveCar";
     }
 
-    // Handles removing Car object from page
+    /**
+     * Removes a car from the listing.
+     *
+     * @param car The car object to remove.
+     * @return A redirect to the car listing page.
+     */
     @PostMapping("/remove")
     public String removeCar(@ModelAttribute("car") Car car) {
         carService.deleteCar(car.getId());
         return "redirect:/cars/CarListing";
     }
-
 }

@@ -16,22 +16,34 @@ public class LoginModel {
     @jakarta.validation.constraints.Size(min = 1, message = "Password is required")
     private String password;
 
-    // Getter method for the username field.
+    /**
+     * This will get the string for username var
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
 
-    // Setter method for the username field.
+    /**
+     * Setter for the username
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
-    // Getter method for the password field.
+    /**
+     * getter for the password
+     * @return password
+     */
     public String getPassword() {
         return password;
     }
 
-    // Setter method for the password field.
+    /**
+     * setter for the password
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
